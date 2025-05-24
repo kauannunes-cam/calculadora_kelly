@@ -1,0 +1,64 @@
+import streamlit as st
+
+# ========== ESTILO CUSTOMIZADO ==========
+st.markdown("""
+    <style>
+        :root {
+            --cor-primaria: #7cb9f2;
+            --cor-texto: #050835;
+        }
+
+        h1, h2, h3, label, p {
+            color: var(--cor-texto) !important;
+        }
+
+        .stNumberInput > div > div > input {
+            background-color: var(--cor-primaria);
+            color: var(--cor-texto);
+        }
+
+        div[data-baseweb="radio"] label {
+            background: transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--cor-texto);
+        }
+
+        input[type="radio"] {
+            accent-color: var(--cor-primaria);
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# ========== TÍTULO ==========
+st.title("📈 Calculadora Kelly Criterion")
+
+# ========== CAMPOS ==========
+st.markdown("Preencha os campos abaixo para calcular o fator de alocação baseado no Critério de Kelly.")
+
+col1, col2 = st.columns(2)
+with col1:
+    win_rate = st.number_input("Assertividade (%)", min_value=0.0, max_value=100.0, value=55.0, step=0.1) / 100
+with col2:
+    payoff = st.number_input("Fator Lucrativo (Payoff)", min_value=0.1, value=1.5, step=0.1)
+
+# ========== CÁLCULO ==========
+kelly = win_rate - ((1 - win_rate) / payoff)
+kelly = max(0, kelly)
+
+st.markdown(f"### 🔢 Fator de Kelly Ideal: `{kelly:.2%}`")
+
+# ========== ESCALAS ==========
+st.markdown("#### 🧮 Frações do Kelly para controle de risco:")
+
+fractions = {
+    "1/4 Kelly": kelly * 0.25,
+    "1/2 Kelly": kelly * 0.50,
+    "3/4 Kelly": kelly * 0.75,
+    "Full Kelly": kelly
+}
+
+col1, col2 = st.columns(2)
+for i, (label, value) in enumerate(fractions.items()):
+    with (col1 if i % 2 == 0 else col2):
+        st.metric(label=label, value=f"{value:.2%}")
