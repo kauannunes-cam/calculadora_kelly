@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 
-
+st.set_page_config(layout="wide")
 # ========== ESTILO CUSTOMIZADO ==========
 st.markdown("""
     <style>
@@ -43,7 +43,7 @@ st.markdown("""
 
 
 
-st.set_page_config(layout="wide")
+
 st.title("📊 Simulador de Resultados por Trade")
 
 # === INPUTS ===
