@@ -3,32 +3,40 @@ import streamlit as st
 # ========== ESTILO CUSTOMIZADO ==========
 st.markdown("""
     <style>
-        :root {
-            --cor-primaria: #7cb9f2;
-            --cor-texto: #050835;
+        body, .stApp {
+            background-color: #f5e5bf;
+            color: #2d63b2;
         }
 
-        h1, h2, h3, label, p {
-            color: var(--cor-texto) !important;
+        h1, h2, h3, h4, label, p, div, input, button {
+            color: #2d63b2 !important;
         }
 
-        .stNumberInput > div > div > input {
-            background-color: var(--cor-primaria);
-            color: var(--cor-texto);
+        .stNumberInput input {
+            background-color: #eaf1fc !important;
+            color: #050835 !important;
         }
 
-        div[data-baseweb="radio"] label {
-            background: transparent;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--cor-texto);
+        .stMetric label, .stMetric div {
+            color: #2d63b2 !important;
         }
 
         input[type="radio"] {
-            accent-color: var(--cor-primaria);
+            accent-color: #2d63b2 !important;
+        }
+
+        div[data-baseweb="radio"] label p {
+            color: #2d63b2 !important;
+            font-weight: bold;
+        }
+
+        label[data-baseweb="radio"] {
+            background: transparent !important;
+            cursor: pointer;
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 # ========== TÍTULO ==========
 st.title("📈 Calculadora Kelly Criterion")
