@@ -70,3 +70,9 @@ col1, col2 = st.columns(2)
 for i, (label, value) in enumerate(fractions.items()):
     with (col1 if i % 2 == 0 else col2):
         st.metric(label=label, value=f"{value:.2%}")
+
+
+
+# Rodapé
+st.markdown("---")
+st.markdown("**Desenvolvido por Kauan Nunes - Trader QUANT**")
